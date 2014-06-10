@@ -7,6 +7,7 @@
 //
 
 #import "RTDetailViewController.h"
+#import "RTDetailView.h"
 
 @interface RTDetailViewController ()
 
@@ -19,18 +20,17 @@
 - (id)initWithMovie:(RTMovie *)movie {
     if (self = [super init]) {
         _movie = movie;
+        self.navigationItem.title = @"MaleFicent";
+        
+        // setup left navigation bar button
+        UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithTitle:MOVIES_VIEW_TITLE style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonHandler:)];
+        self.navigationItem.leftBarButtonItem = leftButton;
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    self.navigationItem.title = @"MaleFicent";
-
-    // setup left navigation bar button
-    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithTitle:MOVIES_VIEW_TITLE style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonHandler:)];
-    self.navigationItem.leftBarButtonItem = leftButton;
+- (void)loadView {
+    self.view = [[RTDetailView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] movie:_movie];
 }
 
 - (void)didReceiveMemoryWarning {

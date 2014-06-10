@@ -15,9 +15,7 @@
 @property (nonatomic) RTMoviesViewControllerType type;
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) __block NSMutableArray * movies;
-@property (nonatomic, strong) NSMutableArray * prefetchedMovies;
 @property (nonatomic, strong) NSString * moviesUrl;
-@property (nonatomic) int page; // used for paging movie request
 
 @end
 
@@ -26,7 +24,6 @@
 - (id)initWithType:(RTMoviesViewControllerType)type {
     if (self = [super init]) {
         _type = type;
-        _page = 0;
         if (_type == RTMoviesViewControllerTypeBoxOffice) {
             _moviesUrl = BOX_OFFICE_URL;
         } else if (_type == RTMoviesViewControllerTypeTopDVDs) {
@@ -40,7 +37,7 @@
 }
 
 - (void)loadView {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, IPHONE_SCREEN_HEIGHT)];
+    _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     [_tableView setRowHeight:MOVIES_TABLE_ROW_HEIGHT];
     _tableView.clipsToBounds = NO;
     _tableView.dataSource = self;

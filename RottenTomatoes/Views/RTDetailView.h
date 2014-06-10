@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTMovie.h"
 
 @interface RTDetailView : UIView
+
+- (id)initWithFrame:(CGRect)frame movie:(RTMovie *)movie;
 
 @end

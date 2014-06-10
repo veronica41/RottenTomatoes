@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		20F869D7D8794F7DBC728698 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5F0A6B39D547809B2F3409 /* libPods.a */; };
 		96408C1C1947039C00CA65D9 /* RTMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C1B1947039C00CA65D9 /* RTMoviesViewController.m */; };
-		96408C1F194705CA00CA65D9 /* RTMoviewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C1E194705CA00CA65D9 /* RTMoviewsView.m */; };
 		96408C2219470B3A00CA65D9 /* RTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C2119470B3A00CA65D9 /* RTDetailViewController.m */; };
 		96408C2519470B5400CA65D9 /* RTDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C2419470B5400CA65D9 /* RTDetailView.m */; };
 		96408C2819470E3D00CA65D9 /* RTMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C2719470E3D00CA65D9 /* RTMovie.m */; };
@@ -44,8 +43,6 @@
 		3C5F0A6B39D547809B2F3409 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96408C1A1947039C00CA65D9 /* RTMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMoviesViewController.h; path = ViewControllers/RTMoviesViewController.h; sourceTree = "<group>"; };
 		96408C1B1947039C00CA65D9 /* RTMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMoviesViewController.m; path = ViewControllers/RTMoviesViewController.m; sourceTree = "<group>"; };
-		96408C1D194705CA00CA65D9 /* RTMoviewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMoviewsView.h; path = Views/RTMoviewsView.h; sourceTree = "<group>"; };
-		96408C1E194705CA00CA65D9 /* RTMoviewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMoviewsView.m; path = Views/RTMoviewsView.m; sourceTree = "<group>"; };
 		96408C2019470B3A00CA65D9 /* RTDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDetailViewController.h; path = ViewControllers/RTDetailViewController.h; sourceTree = "<group>"; };
 		96408C2119470B3A00CA65D9 /* RTDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDetailViewController.m; path = ViewControllers/RTDetailViewController.m; sourceTree = "<group>"; };
 		96408C2319470B5400CA65D9 /* RTDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDetailView.h; path = Views/RTDetailView.h; sourceTree = "<group>"; };
@@ -199,8 +196,6 @@
 		96C22A521946FBF500BCE875 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96408C1D194705CA00CA65D9 /* RTMoviewsView.h */,
-				96408C1E194705CA00CA65D9 /* RTMoviewsView.m */,
 				96408C2319470B5400CA65D9 /* RTDetailView.h */,
 				96408C2419470B5400CA65D9 /* RTDetailView.m */,
 			);
@@ -350,7 +345,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C22A2F1946F30000BCE875 /* RTAppDelegate.m in Sources */,
-				96408C1F194705CA00CA65D9 /* RTMoviewsView.m in Sources */,
 				96408C2819470E3D00CA65D9 /* RTMovie.m in Sources */,
 				96408C2519470B5400CA65D9 /* RTDetailView.m in Sources */,
 				96C22A321946F30000BCE875 /* RottenTomatoes.xcdatamodeld in Sources */,

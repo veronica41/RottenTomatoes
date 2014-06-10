@@ -9,9 +9,6 @@
 #ifndef RottenTomatoes_Header_h
 #define RottenTomatoes_Header_h
 
-#define IPHONE_SCREEN_WIDTH         320.0
-#define IPHONE_SCREEN_HEIGHT  480.0
-
 #define MOVIES_TABLE_ROW_HEIGHT 200
 
 
