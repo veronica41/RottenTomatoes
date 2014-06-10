@@ -7,8 +7,11 @@
 //
 
 #import "RTAppDelegate.h"
+#import "RTMoviesViewController.h"
 
-@implementation RTAppDelegate
+@implementation RTAppDelegate {
+    UITabBarController * _tabBarController;
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -17,7 +20,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    RTMoviesViewController * boxOfficeViewController = [[RTMoviesViewController alloc] initWithType:RTMoviesViewControllerTypeBoxOffice];
+    UINavigationController * boxOfficeNavigationController = [[UINavigationController alloc] initWithRootViewController:boxOfficeViewController];
+    boxOfficeNavigationController.title = BOX_OFFICE_TAB_BAR_TITLE;
+    boxOfficeNavigationController.tabBarItem.image = [UIImage imageNamed:BOX_OFFICE_TAB_BAR_IMAGE];
+
+    RTMoviesViewController * topDVDsViewController = [[RTMoviesViewController alloc] initWithType:RTMoviesViewControllerTypeTopDVDs];
+    UINavigationController * topDVDsNavigationController = [[UINavigationController alloc] initWithRootViewController:topDVDsViewController];
+    topDVDsNavigationController.title = TOP_DVDS_TAB_BAR_TITLE;
+    topDVDsNavigationController.tabBarItem.image = [UIImage imageNamed:TOP_DVDS_TAB_BAR_IMAGE];
+
+    UITabBarController * tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[boxOfficeNavigationController, topDVDsNavigationController];
+    [tabBarController setSelectedIndex:0];
+    self.window.rootViewController = tabBarController;
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
