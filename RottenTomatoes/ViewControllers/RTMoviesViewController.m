@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) __block NSMutableArray * movies;
 @property (nonatomic, strong) NSString * moviesUrl;
+@property (nonatomic, strong) UIRefreshControl * refreshControl;
 
 @end
 
@@ -42,8 +43,14 @@
     _tableView.clipsToBounds = NO;
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    
     self.view = _tableView;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self action:@selector(updateMovies) forControlEvents:UIControlEventValueChanged];
+    [_tableView addSubview:_refreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +107,7 @@
                 movie.posterOriginalUrl = movieDict[@"posters"][@"original"];
                 [_movies addObject:movie];
             }
+            [_refreshControl endRefreshing];
             [_tableView reloadData];
         }
     }];

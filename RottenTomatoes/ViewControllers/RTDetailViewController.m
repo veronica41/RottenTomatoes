@@ -20,11 +20,11 @@
 - (id)initWithMovie:(RTMovie *)movie {
     if (self = [super init]) {
         _movie = movie;
-        self.navigationItem.title = @"MaleFicent";
+        self.navigationItem.title = movie.title;
         
         // setup left navigation bar button
-        UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithTitle:MOVIES_VIEW_TITLE style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonHandler:)];
-        self.navigationItem.leftBarButtonItem = leftButton;
+        UIBarButtonItem *  backButton = [[UIBarButtonItem alloc] initWithTitle:MOVIES_VIEW_TITLE style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonHandler:)];
+        self.navigationItem.backBarButtonItem = backButton;
     }
     return self;
 }
