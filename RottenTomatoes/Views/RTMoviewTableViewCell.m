@@ -7,25 +7,18 @@
 //
 
 #import "RTMoviewTableViewCell.h"
+#import "RTImageHelper.h"
 
 @implementation RTMoviewTableViewCell
-
-@synthesize textLabel = _textLabel;
-@synthesize detailTextLabel = _detailTextLabel;
-@synthesize imageView = _imageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _detailTextLabel.numberOfLines = 0;
-        NSDictionary *views = NSDictionaryOfVariableBindings(_textLabel, _detailTextLabel, _imageView);
-        for (UIView * view in views.allValues) {
-            [view setTranslatesAutoresizingMaskIntoConstraints:NO];
-        }
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(16)-[_imageView]-(16)-[_textLabel]-(16)-|" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(16)-[_imageView]-(16)-|" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(16)-[_textLabel]-(16)-[_detailTextLabel]-(>=16)-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
+        CGRect frame = CGRectMake(16, 16, 62, 92);
+        [self.imageView setFrame:frame];
+        self.imageView.image = [RTImageHelper placeHolderImageWithFrame:frame Color:[UIColor colorWithWhite:1 alpha:0.5]];
+        self.detailTextLabel.numberOfLines = 4;
     }
     return self;
 }

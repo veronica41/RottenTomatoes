@@ -47,6 +47,7 @@
     return YES;
 }
 
+// clear cache when memory is low
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }

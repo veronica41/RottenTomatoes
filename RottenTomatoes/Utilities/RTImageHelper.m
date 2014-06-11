@@ -20,4 +20,15 @@
                                   
      }];
 }
+
+// generate place holder image
++ (UIImage *)placeHolderImageWithFrame:(CGRect)frame Color:(UIColor *)color {
+    UIGraphicsBeginImageContextWithOptions(frame.size, NO, 0);
+    [color setFill];
+    UIRectFill(frame);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end

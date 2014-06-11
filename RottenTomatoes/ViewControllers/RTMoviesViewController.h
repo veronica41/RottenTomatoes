@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 typedef enum {
     RTMoviesViewControllerTypeBoxOffice = 0,
     RTMoviesViewControllerTypeTopDVDs   = 1
 } RTMoviesViewControllerType;
 
-@interface RTMoviesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RTMoviesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate>
 
 - (id)initWithType:(RTMoviesViewControllerType)type;
 

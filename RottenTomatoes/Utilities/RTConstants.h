@@ -9,7 +9,7 @@
 #ifndef RottenTomatoes_Header_h
 #define RottenTomatoes_Header_h
 
-#define MOVIES_TABLE_ROW_HEIGHT 208
+#define MOVIES_TABLE_ROW_HEIGHT 120
 
 
 #pragma mark - strings
@@ -21,7 +21,7 @@
 
 #pragma mark - images
 
-#define IMAGE_REQUEST_TIMEOUT 3*60
+#define IMAGE_REQUEST_TIMEOUT 60
 #define BOX_OFFICE_TAB_BAR_IMAGE @"box_office_tab"
 #define TOP_DVDS_TAB_BAR_IMAGE @"top_dvds_tab"
 

@@ -11,14 +11,19 @@
 #import "RTMoviewTableViewCell.h"
 #import "RTMovie.h"
 #import "RTImageHelper.h"
+#import "RTAlertBar.h"
 
 @interface RTMoviesViewController ()
 
 @property (nonatomic) RTMoviesViewControllerType type;
+
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) __block NSMutableArray * movies;
 @property (nonatomic, strong) NSString * moviesUrl;
+
 @property (nonatomic, strong) UIRefreshControl * refreshControl;
+@property (nonatomic, strong) MBProgressHUD * hud;
+@property (nonatomic, retain) RTAlertBar * alertBar;
 
 @end
 
@@ -51,14 +56,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // pull to refresh
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(updateMovies) forControlEvents:UIControlEventValueChanged];
     [_tableView addSubview:_refreshControl];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UITableViewDataSource
@@ -88,34 +89,72 @@
     // go to detail view
     RTMovie * movie = [_movies objectAtIndex:indexPath.row];
     UITableViewCell * cell = [_tableView cellForRowAtIndexPath:indexPath];
+    // pass in low resolution image
     UIImage * posterImage = cell.imageView.image;
     RTDetailViewController * detailViewController = [[RTDetailViewController alloc] initWithMovie:movie posterImage:posterImage];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (void)updateMovies {
-    _movies = [NSMutableArray array];
+    // cleanup
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    if (_alertBar) {
+        [_alertBar removeFromSuperview];
+    }
+
+    // display loading state
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"Loading";
+	_hud.delegate = self;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_moviesUrl]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSError * error;
-        NSDictionary * results = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        if (error) {
-            NSLog(@"Error parsing JSON: %@", error);
+        if (connectionError) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_hud hide:YES];
+                [_refreshControl endRefreshing];
+
+                // display network error alert bar
+                _alertBar = [[RTAlertBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 48) title:connectionError.localizedDescription];
+                [self.view addSubview:_alertBar];
+            });
         } else {
-            NSArray * moviesArray = results[@"movies"];
-            for (NSDictionary * movieDict in moviesArray) {
-                RTMovie * movie = [[RTMovie alloc] init];
-                movie.title = movieDict[@"title"];
-                movie.synopsis = movieDict[@"synopsis"];
-                movie.posterProfileUrl = movieDict[@"posters"][@"profile"];
-                movie.posterOriginalUrl = movieDict[@"posters"][@"original"];
-                [_movies addObject:movie];
+            NSError * error;
+            NSDictionary * results = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_hud hide:YES];
+                    [_refreshControl endRefreshing];
+                });
+                NSLog(@"Error parsing JSON: %@", error);
+            } else {
+                _movies = [NSMutableArray array];
+                NSArray * moviesArray = results[@"movies"];
+                for (NSDictionary * movieDict in moviesArray) {
+                    RTMovie * movie = [[RTMovie alloc] init];
+                    movie.title = movieDict[@"title"];
+                    movie.synopsis = movieDict[@"synopsis"];
+                    // low resolution
+                    movie.posterProfileUrl = movieDict[@"posters"][@"profile"];
+                    // high resolution
+                    movie.posterOriginalUrl = movieDict[@"posters"][@"original"];
+                    [_movies addObject:movie];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_hud hide:YES];
+                    [_refreshControl endRefreshing];
+                    [_tableView reloadData];
+                });
             }
-            [_refreshControl endRefreshing];
-            [_tableView reloadData];
         }
     }];
+}
+
+#pragma mark - MBProgressHUDDelegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[_hud removeFromSuperview];
+	_hud = nil;
 }
 
 @end

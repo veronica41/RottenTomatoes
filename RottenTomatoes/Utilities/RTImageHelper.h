@@ -12,4 +12,6 @@
 
 + (void)setImageWithURL:(NSString *)url placeHolderImage:(UIImage *)placeHolderImage forView:(UIImageView *)imageView;
 
++ (UIImage *)placeHolderImageWithFrame:(CGRect)frame Color:(UIColor *)color;
+
 @end
