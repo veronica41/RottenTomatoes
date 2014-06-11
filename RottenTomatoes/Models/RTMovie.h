@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * synopsis;
-@property (nonatomic, strong) NSString * posterThumbnailUrl;
+@property (nonatomic, strong) NSString * posterProfileUrl;
 @property (nonatomic, strong) NSString * posterOriginalUrl;
 
 @end

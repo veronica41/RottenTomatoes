@@ -21,6 +21,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
+    // setup cache for image
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:MEMORY_CAPACITY
+                                                            diskCapacity:DISK_CAPACITY
+                                                                diskPath:DISK_CACHE_PATH];
+    [NSURLCache setSharedURLCache:sharedCache];
+
     RTMoviesViewController * boxOfficeViewController = [[RTMoviesViewController alloc] initWithType:RTMoviesViewControllerTypeBoxOffice];
     UINavigationController * boxOfficeNavigationController = [[UINavigationController alloc] initWithRootViewController:boxOfficeViewController];
     boxOfficeNavigationController.title = BOX_OFFICE_TAB_BAR_TITLE;
@@ -39,6 +45,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

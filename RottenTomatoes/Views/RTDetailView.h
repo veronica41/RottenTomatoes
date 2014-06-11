@@ -11,6 +11,6 @@
 
 @interface RTDetailView : UIView
 
-- (id)initWithFrame:(CGRect)frame movie:(RTMovie *)movie;
+- (id)initWithFrame:(CGRect)frame movie:(RTMovie *)movie posterImage:(UIImage *)posterImage;
 
 @end

@@ -11,6 +11,6 @@
 
 @interface RTDetailViewController : UIViewController
 
-- (id)initWithMovie:(RTMovie *)movie;
+- (id)initWithMovie:(RTMovie *)movie posterImage:(UIImage *)image;
 
 @end

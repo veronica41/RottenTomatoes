@@ -7,6 +7,7 @@
 //
 
 #import "RTDetailView.h"
+#import "RTImageHelper.h"
 
 static CGFloat _contentWidth;
 
@@ -25,13 +26,13 @@ static CGFloat _contentWidth;
     _contentWidth = [[UIScreen mainScreen] applicationFrame].size.width - 16;
 }
 
-- (id)initWithFrame:(CGRect)frame movie:(RTMovie *)movie {
+- (id)initWithFrame:(CGRect)frame movie:(RTMovie *)movie posterImage:(UIImage *)posterImage {
     self = [super initWithFrame:frame];
     if (self) {
         _movie = movie;
         
         _backgroundView = [[UIImageView alloc] init];
-        // TODO: set movie poster
+        [RTImageHelper setImageWithURL:movie.posterOriginalUrl placeHolderImage:posterImage forView:_backgroundView];
         [self addSubview:_backgroundView];
 
         _scrollView = [[UIScrollView alloc] init];

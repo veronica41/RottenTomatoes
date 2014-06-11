@@ -8,7 +8,9 @@
 
 #import "RTMoviesViewController.h"
 #import "RTDetailViewController.h"
+#import "RTMoviewTableViewCell.h"
 #import "RTMovie.h"
+#import "RTImageHelper.h"
 
 @interface RTMoviesViewController ()
 
@@ -21,6 +23,7 @@
 @end
 
 @implementation RTMoviesViewController
+
 
 - (id)initWithType:(RTMoviesViewControllerType)type {
     if (self = [super init]) {
@@ -67,13 +70,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"MovieTableCell";
     
-    UITableViewCell * cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    RTMoviewTableViewCell * cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[RTMoviewTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         RTMovie * movie = [_movies objectAtIndex:indexPath.row];
         cell.textLabel.text = movie.title;
         cell.detailTextLabel.text = movie.synopsis;
-        cell.imageView.image = [UIImage imageNamed:@"whatever"];
+        [RTImageHelper setImageWithURL:movie.posterProfileUrl placeHolderImage:nil forView:cell.imageView];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
@@ -84,7 +87,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // go to detail view
     RTMovie * movie = [_movies objectAtIndex:indexPath.row];
-    RTDetailViewController * detailViewController = [[RTDetailViewController alloc] initWithMovie:movie];
+    UITableViewCell * cell = [_tableView cellForRowAtIndexPath:indexPath];
+    UIImage * posterImage = cell.imageView.image;
+    RTDetailViewController * detailViewController = [[RTDetailViewController alloc] initWithMovie:movie posterImage:posterImage];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -103,7 +108,7 @@
                 RTMovie * movie = [[RTMovie alloc] init];
                 movie.title = movieDict[@"title"];
                 movie.synopsis = movieDict[@"synopsis"];
-                movie.posterThumbnailUrl = movieDict[@"posters"][@"thumbnail"];
+                movie.posterProfileUrl = movieDict[@"posters"][@"profile"];
                 movie.posterOriginalUrl = movieDict[@"posters"][@"original"];
                 [_movies addObject:movie];
             }

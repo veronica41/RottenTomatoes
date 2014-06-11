@@ -12,14 +12,17 @@
 @interface RTDetailViewController ()
 
 @property (nonatomic, strong) RTMovie * movie;
+// low resolution image
+@property (nonatomic, strong) UIImage * posterImage;
 
 @end
 
 @implementation RTDetailViewController
 
-- (id)initWithMovie:(RTMovie *)movie {
+- (id)initWithMovie:(RTMovie *)movie posterImage:(UIImage *)image {
     if (self = [super init]) {
         _movie = movie;
+        _posterImage = image;
         self.navigationItem.title = movie.title;
         
         // setup left navigation bar button
@@ -30,12 +33,7 @@
 }
 
 - (void)loadView {
-    self.view = [[RTDetailView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] movie:_movie];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.view = [[RTDetailView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] movie:_movie posterImage:(UIImage *)_posterImage];
 }
 
 - (void)leftBarButtonHandler:(id)sender {
