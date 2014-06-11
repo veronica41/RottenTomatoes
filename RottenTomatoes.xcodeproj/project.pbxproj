@@ -12,6 +12,9 @@
 		96408C2219470B3A00CA65D9 /* RTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C2119470B3A00CA65D9 /* RTDetailViewController.m */; };
 		96408C2519470B5400CA65D9 /* RTDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C2419470B5400CA65D9 /* RTDetailView.m */; };
 		96408C2819470E3D00CA65D9 /* RTMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C2719470E3D00CA65D9 /* RTMovie.m */; };
+		96408C5C19478B6800CA65D9 /* RTImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C5B19478B6800CA65D9 /* RTImageHelper.m */; };
+		96408C60194796BE00CA65D9 /* RTMoviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C5F194796BE00CA65D9 /* RTMoviewTableViewCell.m */; };
+		96408C6F1948001C00CA65D9 /* RTAlertBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 96408C6E1948001C00CA65D9 /* RTAlertBar.m */; };
 		96C22A1D1946F30000BCE875 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C22A1C1946F30000BCE875 /* Foundation.framework */; };
 		96C22A1F1946F30000BCE875 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C22A1E1946F30000BCE875 /* CoreGraphics.framework */; };
 		96C22A211946F30000BCE875 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C22A201946F30000BCE875 /* UIKit.framework */; };
@@ -49,7 +52,13 @@
 		96408C2419470B5400CA65D9 /* RTDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDetailView.m; path = Views/RTDetailView.m; sourceTree = "<group>"; };
 		96408C2619470E3D00CA65D9 /* RTMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMovie.h; path = Models/RTMovie.h; sourceTree = "<group>"; };
 		96408C2719470E3D00CA65D9 /* RTMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMovie.m; path = Models/RTMovie.m; sourceTree = "<group>"; };
-		96408C451947197300CA65D9 /* RTConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTConstants.h; sourceTree = "<group>"; };
+		96408C5A19478B6800CA65D9 /* RTImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTImageHelper.h; path = Utilities/RTImageHelper.h; sourceTree = "<group>"; };
+		96408C5B19478B6800CA65D9 /* RTImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTImageHelper.m; path = Utilities/RTImageHelper.m; sourceTree = "<group>"; };
+		96408C5D19478B8E00CA65D9 /* RTConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RTConstants.h; path = Utilities/RTConstants.h; sourceTree = "<group>"; };
+		96408C5E194796BE00CA65D9 /* RTMoviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMoviewTableViewCell.h; path = Views/RTMoviewTableViewCell.h; sourceTree = "<group>"; };
+		96408C5F194796BE00CA65D9 /* RTMoviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMoviewTableViewCell.m; path = Views/RTMoviewTableViewCell.m; sourceTree = "<group>"; };
+		96408C6D1948001C00CA65D9 /* RTAlertBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTAlertBar.h; path = Views/RTAlertBar.h; sourceTree = "<group>"; };
+		96408C6E1948001C00CA65D9 /* RTAlertBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTAlertBar.m; path = Views/RTAlertBar.m; sourceTree = "<group>"; };
 		96C22A191946F30000BCE875 /* RottenTomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C22A1C1946F30000BCE875 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		96C22A1E1946F30000BCE875 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,7 +110,9 @@
 		96408C441947195100CA65D9 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				96408C451947197300CA65D9 /* RTConstants.h */,
+				96408C5D19478B8E00CA65D9 /* RTConstants.h */,
+				96408C5A19478B6800CA65D9 /* RTImageHelper.h */,
+				96408C5B19478B6800CA65D9 /* RTImageHelper.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -198,6 +209,10 @@
 			children = (
 				96408C2319470B5400CA65D9 /* RTDetailView.h */,
 				96408C2419470B5400CA65D9 /* RTDetailView.m */,
+				96408C5E194796BE00CA65D9 /* RTMoviewTableViewCell.h */,
+				96408C5F194796BE00CA65D9 /* RTMoviewTableViewCell.m */,
+				96408C6D1948001C00CA65D9 /* RTAlertBar.h */,
+				96408C6E1948001C00CA65D9 /* RTAlertBar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,12 +359,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96408C6F1948001C00CA65D9 /* RTAlertBar.m in Sources */,
 				96C22A2F1946F30000BCE875 /* RTAppDelegate.m in Sources */,
 				96408C2819470E3D00CA65D9 /* RTMovie.m in Sources */,
 				96408C2519470B5400CA65D9 /* RTDetailView.m in Sources */,
+				96408C5C19478B6800CA65D9 /* RTImageHelper.m in Sources */,
 				96C22A321946F30000BCE875 /* RottenTomatoes.xcdatamodeld in Sources */,
 				96C22A2B1946F30000BCE875 /* main.m in Sources */,
 				96408C1C1947039C00CA65D9 /* RTMoviesViewController.m in Sources */,
+				96408C60194796BE00CA65D9 /* RTMoviewTableViewCell.m in Sources */,
 				96408C2219470B3A00CA65D9 /* RTDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
